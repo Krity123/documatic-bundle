@@ -1,0 +1,30 @@
+{% block documatic_signature_label %}
+	{% spaceless %}
+		{% if widget is defined %}
+			{% set label_attr = label_attr|merge({class: (label_attr.class|default('') ~ ' required')|trim}) %}
+
+			{% set agr = {} %}
+
+			{% for i,agreement in agreements %}
+				{% if loop.first %}
+					{% set agr = { '%agr1%': '<a href="' ~ path('documatic_frontend_agreement_show', { stub: agreement.stub }) ~ '">' ~ agreement.name ~ '</a>' } %}
+				{% else %}
+					{% set agr = agr|merge({ ('%agr' ~ (i + 1) ~ '%'): '<a href="' ~ path('documatic_frontend_agreement_show', { stub: agreement.stub }) ~ '">' ~ agreement.name ~ '</a>' }) %}
+				{% endif %}
+			{% endfor %}
+
+			{% set tag = hide_widget ? 'div' : 'label' %}
+
+			<{{ tag }}{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}>
+				{{- widget|raw }}
+				{%- if agr|length > 0 %}
+					{% if hide_widget %}
+						{% transchoice agr|length with agr from translation_domain %}signature.text.no_widget{% endtranschoice %}
+					{% else %}
+						{% transchoice agr|length with agr from translation_domain %}signature.text.widget{% endtranschoice %}
+					{% endif %}
+				{%- endif -%}
+			</{{ tag }}>
+		{% endif %}
+	{% endspaceless %}
+{% endblock %}

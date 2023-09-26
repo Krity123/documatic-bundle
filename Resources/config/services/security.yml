@@ -1,0 +1,3 @@
+services:
+    documatic.role_hierarchy:
+        alias: security.role_hierarchy

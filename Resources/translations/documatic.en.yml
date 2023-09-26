@@ -1,0 +1,21 @@
+agreement:
+    create:
+        page_title:  New Agreement
+
+agreements:
+    agreement:
+        diff:
+            label:  compare with previosuly signed version.
+    form:
+        submit:     Agree
+    page_title:     Agreements
+    toolbar:
+        create:     Create new agreement
+
+signature:
+    text:
+        no_widget: >
+            {1}By clicking "Sign up", you agree to our <strong>%agr1%</strong>.|{2}By clicking on "Sign up", you agree to our <strong>%agr1%</strong> and <strong>%agr2%</strong>.|{3}By clicking on "Sign up", you agree to our <strong>%agr1%</strong>, <strong>%agr2%</strong> and <strong>%agr3%</strong>.
+        widget: >
+            {1}I agree to the <strong>%agr1%</strong>.|{2}I agree to the <strong>%agr1%</strong> and <strong>%agr2%</strong>.|{3}I agree to the <strong>%agr1%</strong>, <strong>%agr2%</strong> and <strong>%agr3%</strong>.
+    unsigned: Please agree.

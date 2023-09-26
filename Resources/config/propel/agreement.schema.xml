@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database name="default" namespace="Documatic\Bundle\DocumaticBundle\Propel" defaultIdMethod="native">
+	<table name="documatic_agreement" phpName="Agreement" idMethod="native">
+		<behavior name="concrete_inheritance">
+			<parameter name="extends" value="documatic_document" />
+		</behavior>
+	</table>
+</database>

@@ -1,0 +1,11 @@
+{% extends "DocumaticBundle::frontend_layout.html.twig" %}
+
+{% trans_default_domain "documatic" %}
+
+{% block documatic_content %}
+	{% if version %}
+		{% include "DocumaticEditorBundle:Frontend:show.html.twig" %}
+	{% else %}
+		<div class="alert alert-info">{{ "document.finalized_view.error.no_finalized_version"|trans }}</div>
+	{% endif %}
+{% endblock %}

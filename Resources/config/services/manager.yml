@@ -1,0 +1,12 @@
+parameters:
+    documatic.agreement.manager.propel.class: "Documatic\\Bundle\\DocumaticBundle\\Propel\\AgreementManager"
+    documatic.signature.manager.propel.class: "Documatic\\Bundle\\DocumaticBundle\\Propel\\SignatureManager"
+
+services:
+    documatic.agreement.manager.propel:
+        class: "%documatic.agreement.manager.propel.class%"
+    documatic.signature.manager.propel:
+        class: "%documatic.signature.manager.propel.class%"
+        arguments:
+            - "@documatic.agreement.manager"
+            - "@documatic.role_hierarchy"

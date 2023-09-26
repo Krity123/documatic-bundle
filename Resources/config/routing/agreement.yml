@@ -1,0 +1,3 @@
+_documatic_agreement:
+    resource: "@DocumaticBundle/Controller"
+    type: annotation

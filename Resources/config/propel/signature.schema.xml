@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<database name="default" namespace="Documatic\Bundle\DocumaticBundle\Propel" defaultIdMethod="native">
+    <table name="documatic_signature" phpName="Signature" idMethod="native">
+        <column name="id"        type="integer" primaryKey="true" autoIncrement="true" required="true" />
+        <column name="entity_id" type="varchar" size="255" required="true" />
+        <column name="version_id"  type="integer" required="true" />
+        <column name="agreed_at" type="timestamp" required="true" />
+        <behavior name="timestampable">
+            <parameter name="create_column" value="agreed_at" />
+            <parameter name="disable_updated_at" value="true" />
+        </behavior>
+        <foreign-key foreignTable="documatic_version" name="FK_documatic_agreement_version">
+            <reference local="version_id" foreign="id" />
+        </foreign-key>
+        <unique name="signature">
+            <unique-column name="entity_id" />
+            <unique-column name="version_id" />
+        </unique>
+    </table>
+</database>

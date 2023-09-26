@@ -1,0 +1,20 @@
+{% extends "DocumaticBundle::frontend_layout.html.twig" %}
+
+{% trans_default_domain "documatic" %}
+
+{% block documatic_head_style %}
+	{{ parent() }}
+	{% stylesheets filter="cssrewrite"
+	'bundles/documatic/css/agreements.css'
+	%}
+	<link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen" />
+	{% endstylesheets %}
+{% endblock %}
+
+{% block documatic_page_class %}agreements{% endblock %}
+
+{% block documatic_page_title %}{{ "agreements.page_title"|trans }}{% endblock %}
+
+{% block documatic_content %}
+	{% include "DocumaticBundle:Frontend:content.html.twig" %}
+{% endblock %}

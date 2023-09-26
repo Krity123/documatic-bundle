@@ -1,0 +1,20 @@
+{% extends "DocumaticEditorBundle::frontend_layout.html.twig" %}
+
+{% block documatic_head_style %}
+	{{ parent() }}
+	{% stylesheets
+		'bundles/documaticeditor/css/styles.css'
+	%}
+	<link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen">
+	{% endstylesheets %}
+{% endblock %}
+
+{% block documatic_page_class %}version_diff{% endblock %}
+
+{% block documatic_page_title %}{{ version.document.name }} {% endblock %}
+
+{% block documatic_content %}
+	<div class="content">
+		{{ version|diff(target) }}
+	</div>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "DocumaticBundle::layout.html.twig" %}
+
+{% trans_default_domain "documatic" %}
+
+{% block documatic_page_class %}document create{% endblock %}
+
+{% block documatic_page_title %}
+	{% trans %}agreement.create.page_title{% endtrans %}
+{% endblock %}
+
+{% block documatic_content %}
+	{{ form_start(form) }}
+
+	{% if form_errors(form)|length > 0 %}
+		<div class="alert alert-danger">
+			{{ form_errors(form) }}
+		</div>
+	{% endif %}
+
+	{{ form_row(form.name) }}
+
+	<div class="form-group">
+		{{ form_label(form.description) }}
+		{{ form_widget(form.description) }}
+		<div id="epiceditor" class="form-control"></div>
+	</div>
+
+	{{ form_rest(form) }}
+
+	<button type="submit" class="save btn btn-success">{{ "document.form.submit"|trans }}</button>
+	{{ form_end(form) }}
+{% endblock %}
+
+{% block documatic_foot_script %}
+	{{ parent() }}
+	{% javascripts
+	'bundles/documaticeditor/vendor/epiceditor/epiceditor/js/epiceditor.min.js'
+	'bundles/documaticeditor/js/create.js'
+	%}
+	<script src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+{% endblock %}

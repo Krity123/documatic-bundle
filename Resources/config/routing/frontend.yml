@@ -1,0 +1,3 @@
+_documatic_frontend:
+    resource: "@DocumaticBundle/Controller/FrontendController.php"
+    type: annotation

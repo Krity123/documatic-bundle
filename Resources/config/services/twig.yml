@@ -1,0 +1,9 @@
+services:
+    documatic.twig.renderer.extension:
+        class: "Documatic\\Bundle\\DocumaticBundle\\Twig\\Extension\\DocumaticExtension"
+        arguments:
+            - "@documatic.agreement.manager"
+            - "@documatic.signature.manager"
+            - "@security.token_storage"
+        tags:
+            - { name: twig.extension }

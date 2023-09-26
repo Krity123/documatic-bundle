@@ -1,0 +1,93 @@
+{% extends "DocumaticBundle::layout.html.twig" %}
+
+{% trans_default_domain "documatic" %}
+
+{% set url_params = { document_id: document.id, version_id: version.id } %}
+
+{% block documatic_head_style %}
+	{{ parent() }}
+	{% stylesheets
+	'bundles/documaticeditor/css/version.css'
+	%}
+	<link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen">
+	{% endstylesheets %}
+{% endblock %}
+
+{% block documatic_page_class %}version{% endblock %}
+
+{% block documatic_page_title %}
+	{{ document.name }} [{{ version.name }}]
+{% endblock %}
+
+{% block documatic_page_nav %}
+	{% include "DocumaticEditorBundle:Version:toolbar.html.twig" %}
+{% endblock %}
+
+{% block documatic_content %}
+	<div>
+		{% if is_granted("documatic.version_edit", version) %}
+			<div id="xhr_alerts"></div>
+			<div id="loading" class="loading">
+				<i class="fa fa-refresh fa-spin fa-3x"></i>
+			</div>
+		{% endif %}
+
+		{% include "DocumaticEditorBundle:Version:info.html.twig" %}
+
+		<div class="preview">
+			{%  include "DocumaticEditorBundle:Version:preview.html.twig" %}
+		</div>
+
+		{% if is_granted("documatic.version_edit", version) and not version.final %}
+			{% include "DocumaticEditorBundle:Section:confirm.html.twig" %}
+		{% endif %}
+	</div>
+{% endblock %}
+
+{% block documatic_foot_script %}
+	{{ parent() }}
+	{% javascripts
+	'bundles/documaticeditor/vendor/bootbox/bootbox.min.js'
+	'bundles/documaticeditor/vendor/epiceditor/epiceditor/js/epiceditor.min.js'
+	'bundles/documaticeditor/vendor/jquery-form/jquery.form.min.js'
+	'bundles/documaticeditor/vendor/mustache/mustache.min.js'
+	'bundles/documaticeditor/vendor/jquery-sortable/source/js/jquery-sortable-min.js'
+	'bundles/documaticeditor/js/confirm.js'
+	'bundles/documaticeditor/js/toggle.js'
+	'bundles/documaticeditor/js/version.js'
+	%}
+	<script src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+
+	{% if is_granted("documatic.version_edit", version) and not version.final %}
+		{% javascripts
+		'bundles/documaticeditor/js/section.js'
+		%}
+		<script src="{{ asset_url }}"></script>
+		{% endjavascripts %}
+
+		<script>
+			documatic.section = {
+				"delete": {
+					confirm: {
+						message: "{% spaceless %}{%- trans -%}section.delete.confirm.message{%- endtrans -%}{% endspaceless %}",
+						title: "{% spaceless %}{%- trans -%}section.delete.confirm.title{%- endtrans -%}{% endspaceless %}"
+					}
+				},
+				sortable: {
+					url: "{{ path('documatic_section_move', { document_id: document.id, version_id: version.id }) }}"
+				}
+			};
+		</script>
+	{% endif %}
+
+	<script>
+		documatic.version = {};
+
+		documatic.editing = false;
+
+		$( document ).ready(function( e ) {
+			$( ".version" ).version( "show", documatic.version );
+		});
+	</script>
+{% endblock %}

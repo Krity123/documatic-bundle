@@ -1,0 +1,46 @@
+{% extends "DocumaticBundle::layout.html.twig" %}
+
+{% trans_default_domain "documatic" %}
+
+{% block documatic_head_style %}
+	{{ parent() }}
+	{% stylesheets
+	'bundles/documaticeditor/css/admin/common.css'
+	'bundles/documaticeditor/css/version.css'
+	%}
+	<link href="{{ asset_url }}" type="text/css" rel="stylesheet" media="screen">
+	{% endstylesheets %}
+{% endblock %}
+
+{% block documatic_page_class %}document version{% endblock %}
+
+{% block documatic_page_title %}
+	{% trans with { '%document%': document.name } %}version.create.page_title{% endtrans %}
+{% endblock %}
+
+{% block documatic_content %}
+	{% include "DocumaticEditorBundle:Version:form.html.twig" %}
+{% endblock %}
+
+{% block documatic_foot_script %}
+	{{ parent() }}
+	{% javascripts
+	'bundles/documaticeditor/vendor/epiceditor/epiceditor/js/epiceditor.min.js'
+	'bundles/documaticeditor/js/version.js'
+	%}
+	<script src="{{ asset_url }}"></script>
+	{% endjavascripts %}
+	<script>
+		documatic.version = {
+			create: {
+				cancel: {
+					url: "{{ path('documatic_document') }}"
+				}
+			}
+		};
+
+		$( document ).ready(function( e ) {
+			$( ".version" ).version( "create", documatic.version );
+		});
+	</script>
+{% endblock %}

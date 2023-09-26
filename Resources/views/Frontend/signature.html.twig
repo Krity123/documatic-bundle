@@ -1,0 +1,13 @@
+{% trans_default_domain "documatic" %}
+
+{% set agr = {} %}
+
+{% for i,agreement in agreements() %}
+	{% if loop.first %}
+		{% set agr = { '%agr1%': '<a href="' ~ path('documatic_frontend_agreement_show', { stub: agreement.stub }) ~ '">' ~ agreement.name ~ '</a>' } %}
+	{% else %}
+		{% set agr = agr|merge({ ('%agr' ~ (i + 1) ~ '%'): '<a href="' ~ path('documatic_frontend_agreement_show', { stub: agreement.stub }) ~ '">' ~ agreement.name ~ '</a>' }) %}
+	{% endif %}
+{% endfor %}
+
+{% transchoice agr|length with agr %}signature.text{% endtranschoice %}

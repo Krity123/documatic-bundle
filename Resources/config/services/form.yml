@@ -1,0 +1,7 @@
+services:
+    documatic.form_type.signature:
+        class: "Documatic\\Bundle\\DocumaticBundle\\Form\\Type\\SignatureFormType"
+        arguments:
+            - "@documatic.agreement.manager"
+        tags:
+            - { name: form.type }

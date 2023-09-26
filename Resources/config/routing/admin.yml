@@ -1,0 +1,12 @@
+_documatic_admin_agreements:
+    resource: "@DocumaticBundle/Controller/AgreementController.php"
+    type: annotation
+    prefix: /admin/tos
+_documatic_admin_agreements_version:
+    resource: "@DocumaticBundle/Controller/VersionController.php"
+    type: annotation
+    prefix: /admin/tos
+_documatic_admin_agreements_section:
+    resource: "@DocumaticBundle/Controller/SectionController.php"
+    type: annotation
+    prefix: /admin/tos

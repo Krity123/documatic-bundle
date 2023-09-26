@@ -1,0 +1,22 @@
+.agreements .agreement {
+    border-bottom: solid 1px #ccc;
+    margin: 1em 0;
+    padding: 1em;
+    height: auto;
+}
+
+.agreements .agreement .status {
+    float: right;
+}
+
+.agreements .agreement .status.signed {
+    color: #008000;
+}
+
+.agreements .agreement .status.unsigned {
+    color: #ffa500;
+}
+
+.agreements .agreement h3 {
+	margin-top: 0;
+}

@@ -1,0 +1,39 @@
+{
+  "name": "documatic/documatic-bundle",
+  "description": "DocumaticBundle",
+  "keywords": [
+    "symfony",
+    "bundle",
+    "documatic"
+  ],
+  "homepage": "https://github.com/documatic/documatic-bundle",
+  "type": "symfony-bundle",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "United Asian Management Limited",
+      "email": "info@united-asian.com",
+      "homepage": "http://www.united-asian.com"
+    }
+  ],
+  "repositories": [
+    {
+      "type": "composer",
+      "url": "https://x5ELov2qTBqxn1XgvytN@php.fury.io/me/"
+    }
+  ],
+  "require": {
+    "documatic/editor-bundle": "^0.3"
+  },
+  "autoload": {
+    "psr-4": {
+      "Documatic\\Bundle\\DocumaticBundle\\": ""
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "0.3.x-dev"
+    }
+  },
+  "version": "0.3.1"
+}

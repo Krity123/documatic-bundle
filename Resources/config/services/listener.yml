@@ -1,0 +1,13 @@
+parameters:
+    documatic.signature.listener.class: "Documatic\\Bundle\\DocumaticBundle\\EventListener\\SignatureListener"
+
+services:
+    documatic.signature.listener:
+        class: "%documatic.signature.listener.class%"
+        arguments:
+            - "@security.http_utils"
+            - "@documatic.signature.manager"
+            - "@security.token_storage"
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception, method: onKernelException }
+            - { name: kernel.event_listener, event: kernel.controller, method: onFilterController }

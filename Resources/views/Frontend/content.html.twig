@@ -1,0 +1,39 @@
+{% for agreement in finalized_agreements %}
+	<div class="agreement">
+		{% set status =  agreement|signature_status %}
+
+		{% if status != documatic_signature_status_ignored %}
+			{% if status == documatic_signature_status_signed_latest %}
+				<div class="status signed">
+					<i class="fa fa-2x fa-check"></i>
+				</div>
+			{% else %}
+				<div class="status unsigned">
+					<i class="fa fa-2x fa-exclamation-triangle"></i>
+				</div>
+			{% endif %}
+		{% endif %}
+
+		<h3 class="name">
+			<a href="{{ path('documatic_frontend_agreement_show', {stub: agreement.stub}) }}" target="_blank">
+				{{ agreement.name }}
+			</a>
+		</h3>
+
+		{% if agreement.description %}
+			<div class="description">
+				<p>{{ agreement.description|documatic_markdown|raw }}</p>
+			</div>
+		{% endif %}
+
+		{% if status == documatic_signature_status_signed_previous  %}
+			<div class="diff">
+				<a href="{{ path("documatic_frontend_agreement_diff", { stub: agreement.stub }) }}">{{ "agreements.agreement.diff.label"|trans }}</a>
+			</div>
+		{% endif %}
+	</div>
+{% endfor %}
+
+{% if form %}
+	{{ form(form) }}
+{% endif %}
