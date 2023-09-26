@@ -27,7 +27,7 @@
     }
   ],
   "require": {
-    "documatic/editor-bundle": "^0.3"
+    "documatic/editor-bundle": "0.4.x-dev"
   },
   "require-dev": {
     "documatic/editor-bundle": "^0.4.x-dev"
