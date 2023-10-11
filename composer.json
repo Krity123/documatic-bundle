@@ -18,12 +18,19 @@
   ],
   "repositories": [
     {
+			"type": "git",
+			"url": "https://github.com/Krity123/documatic-editor-bundle"
+		},
+    {
       "type": "composer",
       "url": "https://x5ELov2qTBqxn1XgvytN@php.fury.io/me/"
     }
   ],
   "require": {
-    "documatic/editor-bundle": "^0.3"
+    "documatic/editor-bundle": "0.4.x-dev"
+  },
+  "require-dev": {
+    "documatic/editor-bundle": "^0.4.x-dev"
   },
   "autoload": {
     "psr-4": {
@@ -32,7 +39,8 @@
   },
   "extra": {
     "branch-alias": {
-      "dev-master": "0.3.x-dev"
+      "dev-master": "0.3.x-dev",
+      "dev-feat/update-symfony-version": "0.4.x-dev"
     }
   },
   "version": "0.3.1"
